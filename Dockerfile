@@ -4,16 +4,15 @@ RUN install_packages \
   xserver-xorg \
   xinit \
   xserver-xorg-video-fbdev \
+  xserver-xorg-input-evdev \
   lxde \
   lxde-common \
   lightdm \
-  build-essential \
   git \
   ca-certificates
 
+COPY calibration.conf /etc/X11/xorg.conf.d/
+COPY start.sh /usr/bin/start.sh
 
-#COPY *.conf /usr/share/X11/xorg.conf.d/
-RUN install_packages evtest xserver-xorg-input-evdev
-COPY *.conf /usr/share/X11/xorg.conf.d/
-#RUN install_packages netsurf netsurf-fb vim-tiny git ca-certificates
-#RUN install_packages evtest xserver-xorg-input-kbd xserver-xorg-input-mouse xserver-xorg-input-evdev
+ENTRYPOINT ["/usr/bin/start.sh"]
+CMD startx
