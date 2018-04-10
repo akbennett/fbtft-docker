@@ -12,6 +12,7 @@ RUN install_packages \
   ca-certificates
 
 COPY calibration.conf /etc/X11/xorg.conf.d/
+COPY fbtft.conf /etc/X11/xorg.conf.d/
 COPY start.sh /usr/bin/start.sh
 
 ENTRYPOINT ["/usr/bin/start.sh"]
